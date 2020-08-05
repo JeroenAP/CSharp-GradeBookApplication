@@ -23,16 +23,17 @@ namespace GradeBook.GradeBooks
 
             var allGrades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
             var indexLocation = allGrades.FindIndex(item => item < averageGrade);
+            var numGrades = allGrades.Count;
 
             switch (indexLocation + 1)
             {
-                case var n when n > allGrades.Count - threshold:
+                case var n when n > numGrades - threshold:
                     return 'D';
-                case var n when n > allGrades.Count - (threshold * 2):
+                case var n when n > numGrades - (threshold * 2):
                     return 'C';
-                case var n when n > allGrades.Count - (threshold * 3):
+                case var n when n > numGrades - (threshold * 3):
                     return 'B';
-                case var n when n > allGrades.Count - (threshold * 4):
+                case var n when n > numGrades - (threshold * 4):
                     return 'A';
                 default:
                     return 'F';
